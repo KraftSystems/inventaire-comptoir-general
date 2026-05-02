@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventaire vocal — Le Comptoir Général</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans:    'Inter', -apple-system, Helvetica, Arial, sans-serif;
+
+      --color-bg:             #0e0b07;
+      --color-surface:        #191410;
+      --color-surface-raised: #221c15;
+      --color-border:         #3a2f22;
+      --color-border-subtle:  #2c2218;
+
+      --color-text-primary:   #f0e8d5;
+      --color-text-secondary: #9c8a72;
+      --color-text-muted:     #5c4f3d;
+
+      --color-gold:           #c8983a;
+      --color-gold-light:     #e8b855;
+      --color-gold-bg:        #1e1608;
+      --color-gold-border:    #4a3510;
+
+      --color-green:          #7aaa6a;
+      --color-green-bg:       #0d1f0a;
+      --color-green-border:   #2a4a22;
+
+      --color-red:            #c86060;
+      --color-red-bg:         #1f0d0d;
+      --color-red-border:     #4a2222;
+
+      --color-amber:          #c8883a;
+      --color-amber-bg:       #1e1408;
+      --color-amber-border:   #4a3010;
+
+      --color-background-primary:   var(--color-surface);
+      --color-background-secondary: var(--color-surface-raised);
+      --color-background-info:      var(--color-gold-bg);
+      --color-background-success:   var(--color-green-bg);
+      --color-background-danger:    var(--color-red-bg);
+      --color-background-warning:   var(--color-amber-bg);
+
+      --color-text-info:    var(--color-gold-light);
+      --color-text-success: var(--color-green);
+      --color-text-danger:  var(--color-red);
+      --color-text-warning: var(--color-amber);
+
+      --color-border-primary:   var(--color-border);
+      --color-border-secondary: var(--color-border-subtle);
+      --color-border-tertiary:  var(--color-border-subtle);
+      --color-border-info:      var(--color-gold-border);
+      --color-border-success:   var(--color-green-border);
+      --color-border-danger:    var(--color-red-border);
+      --color-border-warning:   var(--color-amber-border);
+
+      --border-radius-lg: 8px;
+      --border-radius-md: 5px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+      padding: 1.75rem 1rem 3rem;
+    }
+
+    .app { max-width: 660px; margin: 0 auto; }
+
+    /* ── Header ── */
+    .header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+    .title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+    }
+    .title em { font-style: italic; color: var(--color-gold-light); }
+    .subtitle {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      margin-top: 5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .subtitle span { color: var(--color-text-secondary); }
+
+    /* ── Logo Comptoir Général ── */
+    .logo-cg {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .logo-script {
+      font-family: 'Great Vibes', cursive;
+      font-size: 32px;
+      color: var(--color-text-primary);
+      letter-spacing: 0.01em;
+      display: block;
+    }
+    .logo-sub {
+      font-family: var(--font-sans);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      margin-top: 1px;
+      display: block;
+    }
+    .logo-divider {
+      width: 1px;
+      height: 36px;
+      background: var(--color-border);
+      flex-shrink: 0;
+    }
+
+    /* ── Footer KraftSystems ── */
+    .footer {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--color-border-subtle);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+    .footer-mention {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      letter-spacing: 0.03em;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .footer-brand-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      letter-spacing: 0.02em;
+    }
+    .footer-email {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      letter-spacing: 0.03em;
+    }
+    .ks-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 7px;
+      flex-shrink: 0;
+    }
+
+    /* ── Tab nav ── */
+    .tab-nav {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 1.25rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--border-radius-lg);
+      padding: 4px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 7px 10px;
+      border: none;
+      border-radius: 5px;
+      background: transparent;
+      color: var(--color-text-muted);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--color-text-secondary); }
+    .tab-btn.active {
+      background: var(--color-surface-raised);
+      color: var(--color-gold-light);
+      border: 1px solid var(--color-gold-border);
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Zone pills ── */
+    .zone-bar {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--border-radius-lg);
+      padding: 1rem 1.25rem 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .zone-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .zone-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .pill {
+      padding: 5px 13px;
+      border-radius: 3px;
+      border: 1px solid var(--color-border);
+      font-size: 12.5px;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      background: transparent;
+      transition: all .15s;
+      user-select: none;
+    }
+    .pill:hover { border-color: var(--color-gold-border); color: var(--color-text-primary); }
+    .pill.active { background: var(--color-gold-bg); border-color: var(--color-gold); color: var(--color-gold-light); font-weight: 500; }
+    .pill.done { background: var(--color-green-bg); border-color: var(--color-green-border); color: var(--color-green); }
+    .pill.done::after { content: ' ✓'; font-size: 10px; }
+    .pill.done.active { border-color: var(--color-green); box-shadow: 0 0 0 1px var(--color-green-border); }
+    .timeout-bar { height: 1px; background: var(--color-border-subtle); overflow: hidden; }
+    .timeout-fill { height: 100%; background: var(--color-gold); transition: width 1s linear; }
+
+    /* ── Bouton Zone terminée ── */
+    .done-btn {
+      padding: 7px 20px;
+      border-radius: var(--border-radius-md);
+      border: 1px solid var(--color-green-border);
+      background: transparent;
+      color: var(--color-green);
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .2s;
+      display: none;
+    }
+    .done-btn:hover { background: var(--color-green-bg); }
+    .done-btn.visible { display: inline-flex; align-items: center; gap: 6px; }
+    .done-btn.completed { background: var(--color-green-bg); opacity: .6; cursor: default; }
+
+    /* ── Modal de confirmation ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1rem;
+      backdrop-filter: blur(2px);
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--color-surface-raised);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 1.75rem;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+    }
+    .modal-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--color-green-bg);
+      border: 1px solid var(--color-green-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 20px;
+    }
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      color: var(--color-text-primary);
+      margin-bottom: .5rem;
+    }
+    .modal-zone-name {
+      font-style: italic;
+      color: var(--color-gold-light);
+    }
+    .modal-body { font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 1.5rem; }
+    .modal-actions { display: flex; gap: 8px; justify-content: center; }
+    .modal-btn {
+      padding: 8px 22px;
+      border-radius: var(--border-radius-md);
+      border: 1px solid var(--color-border);
+      background: transparent;
+      color: var(--color-text-secondary);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .modal-btn:hover { background: var(--color-surface); color: var(--color-text-primary); }
+    .modal-btn.confirm {
+      background: var(--color-green-bg);
+      border-color: var(--color-green-border);
+      color: var(--color-green);
+      font-weight: 600;
+    }
+    .modal-btn.confirm:hover { border-color: var(--color-green); }
+
+    /* ── Bandeau session complète ── */
+    .session-complete-banner {
+      display: none;
+      background: var(--color-green-bg);
+      border: 1px solid var(--color-green-border);
+      border-radius: var(--border-radius-lg);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .session-complete-banner.visible { display: block; }
+    .session-complete-banner .banner-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      color: var(--color-green);
+      margin-bottom: .25rem;
+    }
+    .session-complete-banner .banner-sub { font-size: 12px; color: var(--color-text-secondary); }
+
+    /* ── Mic zone ── */
+    .mic-zone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 2.25rem 1.5rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--border-radius-lg);
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .mic-zone::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(200,152,58,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .mic-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-surface-raised);
+      border: 1px solid var(--color-border);
+      transition: all .2s;
+      outline: none;
+      position: relative;
+    }
+    .mic-btn::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      transition: border-color .2s;
+    }
+    .mic-btn:hover { border-color: var(--color-gold); background: var(--color-gold-bg); }
+    .mic-btn:hover::after { border-color: rgba(200,152,58,.2); }
+    .mic-btn:hover .mic-icon { fill: var(--color-gold-light); }
+    .mic-btn.listening { background: var(--color-red-bg); border-color: var(--color-red); animation: pulse 1.4s infinite; }
+    .mic-btn.listening::after { border-color: rgba(200,96,96,.15); }
+    .mic-btn.processing { background: var(--color-amber-bg); border-color: var(--color-amber); }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(200,96,96,.25); }
+      50%      { box-shadow: 0 0 0 10px rgba(200,96,96,0); }
+    }
+    .mic-icon { width: 26px; height: 26px; fill: var(--color-text-secondary); transition: fill .2s; }
+    .mic-btn.listening .mic-icon { fill: var(--color-red); }
+    .mic-btn.processing .mic-icon { fill: var(--color-amber); }
+    .mic-status { font-size: 13px; color: var(--color-text-secondary); text-align: center; }
+    .transcript-box {
+      font-size: 14px;
+      color: var(--color-gold-light);
+      font-family: var(--font-display);
+      font-style: italic;
+      text-align: center;
+      min-height: 20px;
+    }
+
+    /* ── Feedback ── */
+    .feedback {
+      padding: .75rem 1rem;
+      border-radius: var(--border-radius-md);
+      font-size: 13px;
+      margin-bottom: 1rem;
+      border: 1px solid;
+      line-height: 1.5;
+    }
+    .feedback.success { background: var(--color-background-success); border-color: var(--color-border-success); color: var(--color-text-success); }
+    .feedback.error   { background: var(--color-background-danger);  border-color: var(--color-border-danger);  color: var(--color-text-danger); }
+    .feedback.info    { background: var(--color-background-info);    border-color: var(--color-border-info);    color: var(--color-text-info); }
+    .feedback.warn    { background: var(--color-background-warning); border-color: var(--color-border-warning); color: var(--color-text-warning); }
+
+    /* ── Log ── */
+    .log { border: 1px solid var(--color-border-subtle); border-radius: var(--border-radius-lg); overflow: hidden; margin-bottom: 1rem; }
+    .log-header {
+      padding: .6rem 1rem;
+      background: var(--color-surface);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--color-border-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .log-header span:last-child { color: var(--color-text-secondary); font-weight: 400; text-transform: none; letter-spacing: 0; }
+    .log-body { max-height: 220px; overflow-y: auto; background: var(--color-surface); }
+    .log-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      gap: 10px;
+      padding: .55rem 1rem;
+      font-size: 12.5px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      align-items: center;
+    }
+    .log-row:last-child { border-bottom: none; }
+    .log-row .art { font-weight: 500; color: var(--color-text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .log-row .zone { color: var(--color-text-secondary); white-space: nowrap; }
+    .log-row .qty { color: var(--color-gold-light); font-weight: 600; text-align: right; white-space: nowrap; }
+    .log-row .undo-btn {
+      background: none;
+      border: 1px solid var(--color-border);
+      cursor: pointer;
+      font-size: 11px;
+      color: var(--color-text-muted);
+      padding: 2px 7px;
+      border-radius: 3px;
+      transition: all .15s;
+      font-family: var(--font-sans);
+    }
+    .log-row .undo-btn:hover { color: var(--color-red); border-color: var(--color-red-border); }
+    .empty-log { padding: 1.5rem; text-align: center; font-size: 13px; color: var(--color-text-muted); font-family: var(--font-display); font-style: italic; }
+
+    /* ── Boutons export ── */
+    .export-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn {
+      padding: 7px 16px;
+      border-radius: var(--border-radius-md);
+      border: 1px solid var(--color-border);
+      background: transparent;
+      font-size: 12.5px;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      transition: all .15s;
+      font-family: var(--font-sans);
+      letter-spacing: 0.01em;
+    }
+    .btn:hover { background: var(--color-surface); color: var(--color-text-primary); }
+    .btn.primary { background: var(--color-gold-bg); border-color: var(--color-gold-border); color: var(--color-gold-light); font-weight: 500; }
+    .btn.primary:hover { border-color: var(--color-gold); }
+    .btn.danger:hover { background: var(--color-red-bg); border-color: var(--color-red-border); color: var(--color-red); }
+
+    /* ── Config panels (Zones + Catalogue) ── */
+    .config-section {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--border-radius-lg);
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    .config-section-title {
+      padding: .75rem 1.25rem;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-muted);
+      border-bottom: 1px solid var(--color-border-subtle);
+      background: var(--color-surface-raised);
+    }
+
+    /* Liste des zones/produits */
+    .config-list { max-height: 280px; overflow-y: auto; }
+    .config-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .6rem 1.25rem;
+      border-bottom: 1px solid var(--color-border-subtle);
+      font-size: 13px;
+      gap: 12px;
+    }
+    .config-row:last-child { border-bottom: none; }
+    .config-row-main { flex: 1; min-width: 0; }
+    .config-row-name { color: var(--color-text-primary); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .config-row-meta { font-size: 11px; color: var(--color-text-muted); margin-top: 2px; }
+    .config-row-key {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      font-family: monospace;
+      background: var(--color-surface-raised);
+      border: 1px solid var(--color-border-subtle);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+    .del-btn {
+      background: none;
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      width: 26px;
+      height: 26px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all .15s;
+      font-family: var(--font-sans);
+    }
+    .del-btn:hover { color: var(--color-red); border-color: var(--color-red-border); background: var(--color-red-bg); }
+
+    /* Formulaire d'ajout */
+    .add-form {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--color-border-subtle);
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .field { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 140px; }
+    .field label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
+    .field input, .field select {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-md);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      padding: 7px 10px;
+      outline: none;
+      transition: border-color .15s;
+      width: 100%;
+    }
+    .field input::placeholder { color: var(--color-text-muted); }
+    .field input:focus, .field select:focus { border-color: var(--color-gold-border); }
+    .field select option { background: var(--color-surface-raised); }
+    .add-btn {
+      padding: 7px 18px;
+      border-radius: var(--border-radius-md);
+      border: 1px solid var(--color-gold-border);
+      background: var(--color-gold-bg);
+      color: var(--color-gold-light);
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .15s;
+      white-space: nowrap;
+      align-self: flex-end;
+      height: 34px;
+    }
+    .add-btn:hover { border-color: var(--color-gold); }
+
+    /* Recherche catalogue */
+    .search-bar {
+      padding: .75rem 1.25rem;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+    .search-bar input {
+      width: 100%;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-md);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      padding: 7px 10px;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .search-bar input::placeholder { color: var(--color-text-muted); }
+    .search-bar input:focus { border-color: var(--color-gold-border); }
+
+    .config-empty { padding: 1.5rem; text-align: center; font-size: 13px; color: var(--color-text-muted); font-family: var(--font-display); font-style: italic; }
+    .count-badge { font-size: 11px; color: var(--color-text-muted); padding: .75rem 1.25rem 0; }
+
+    /* ── Indicateur de sauvegarde ── */
+    .save-indicator {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color .3s;
+    }
+    .save-indicator::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-text-muted);
+      flex-shrink: 0;
+      transition: background .3s;
+    }
+    .save-indicator.saved { color: var(--color-green); }
+    .save-indicator.saved::before { background: var(--color-green); }
+
+    .catalogue-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: .75rem; }
+    .btn.danger-full {
+      border: 1px solid var(--color-red-border);
+      background: var(--color-red-bg);
+      color: var(--color-red);
+      font-weight: 500;
+    }
+    .btn.danger-full:hover { border-color: var(--color-red); }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <div class="header">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:.6rem;">
+      <div class="logo-cg">
+        <span class="logo-script">Comptoir</span>
+        <span class="logo-sub">GÉNÉRAL</span>
+      </div>
+      <div class="logo-divider"></div>
+      <div class="title" style="margin-bottom:0;">Inventaire vocal</div>
+    </div>
+    <div class="subtitle" id="header-subtitle">
+      <span id="subtitle-refs">…</span> &nbsp;·&nbsp;
+      <span id="subtitle-zones">…</span> &nbsp;·&nbsp;
+      02/05/2026
+    </div>
+  </div>
+
+  <!-- Navigation onglets -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('inventaire')">Inventaire</button>
+    <button class="tab-btn" onclick="switchTab('zones')">Config. zones</button>
+    <button class="tab-btn" onclick="switchTab('catalogue')">Catalogue produits</button>
+  </div>
+
+  <!-- ═══ ONGLET 1 : INVENTAIRE ═══ -->
+  <div id="tab-inventaire" class="tab-panel active">
+
+    <div class="zone-bar">
+      <div class="zone-label">Zone active</div>
+      <div class="zone-pills" id="zone-pills"></div>
+      <div class="timeout-bar"><div class="timeout-fill" id="timeout-fill" style="width:0%"></div></div>
+    </div>
+
+    <div class="mic-zone">
+      <button class="mic-btn" id="mic-btn" onclick="toggleMic()">
+        <svg class="mic-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm-2 14.9A7 7 0 0 0 19 11h-2a5 5 0 0 1-10 0H5a7 7 0 0 0 9 6.9V20H11v2h2v-2h-1v-1.1z"/>
+        </svg>
+      </button>
+      <div class="mic-status" id="mic-status">Sélectionne une zone puis clique pour dicter</div>
+      <div class="transcript-box" id="transcript"></div>
+      <button class="done-btn" id="done-btn" onclick="askZoneDone()">
+        <svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+        Zone terminée
+      </button>
+    </div>
+
+    <div class="session-complete-banner" id="session-complete-banner">
+      <div class="banner-title">Session d'inventaire complète ✓</div>
+      <div class="banner-sub" id="banner-sub"></div>
+    </div>
+
+    <div id="feedback-box"></div>
+
+    <div class="log">
+      <div class="log-header">
+        <span>Saisies de cette session</span>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span class="save-indicator" id="save-indicator">Auto-sauvegarde</span>
+          <span id="log-count">0 entrée</span>
+        </div>
+      </div>
+      <div class="log-body" id="log-body">
+        <div class="empty-log">Aucune saisie pour le moment</div>
+      </div>
+    </div>
+
+    <div class="export-row">
+      <button class="btn primary" onclick="exportCSV()">Exporter l'inventaire / .CSV (séparateur ;)</button>
+      <button class="btn" onclick="showSummary()">Voir résumé JSON</button>
+      <button class="btn danger" onclick="clearLog()">Effacer session</button>
+    </div>
+  </div>
+
+  <!-- ═══ ONGLET 2 : CONFIGURATION DES ZONES ═══ -->
+  <div id="tab-zones" class="tab-panel">
+
+    <div class="config-section">
+      <div class="config-section-title">Zones actives</div>
+      <div class="config-list" id="zones-list"></div>
+      <div class="add-form">
+        <div class="field">
+          <label>Nom de la zone</label>
+          <input type="text" id="new-zone-name" placeholder="ex : Terrasse" maxlength="40">
+        </div>
+        <button class="add-btn" onclick="addZone()">+ Ajouter</button>
+      </div>
+    </div>
+
+    <div class="feedback info" style="font-size:12px; margin-top:.5rem;">
+      Supprimer une zone retire également ses données de quantité sur tous les produits du catalogue.
+    </div>
+  </div>
+
+  <!-- ═══ ONGLET 3 : CATALOGUE PRODUITS ═══ -->
+  <div id="tab-catalogue" class="tab-panel">
+
+    <div class="config-section">
+      <div class="config-section-title">Références reconnues par l'IA vocale</div>
+      <div class="search-bar">
+        <input type="text" id="catalogue-search" placeholder="Rechercher un produit ou une catégorie…" oninput="renderCatalogue()">
+      </div>
+      <div class="count-badge" id="catalogue-count"></div>
+      <div class="config-list" id="catalogue-list"></div>
+      <div class="add-form">
+        <div class="field">
+          <label>Nom du produit</label>
+          <input type="text" id="new-product-name" placeholder="ex : GIN ROKU 70CL" maxlength="80">
+        </div>
+        <div class="field" style="min-width:160px; max-width:220px;">
+          <label>Catégorie</label>
+          <select id="new-product-cat"></select>
+        </div>
+        <button class="add-btn" onclick="addProduct()">+ Ajouter</button>
+      </div>
+    </div>
+
+    <div class="feedback info" style="font-size:12px; margin-top:.5rem;">
+      Plus le nom est précis, meilleure est la reconnaissance vocale. Utilisez le format complet : NOM MARQUE CONTENANCE.
+    </div>
+
+    <div class="catalogue-actions">
+      <input type="file" id="csv-file-input" accept=".csv" style="display:none" onchange="importCSV(event)">
+      <button class="btn primary" onclick="document.getElementById('csv-file-input').click()">
+        <svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor" style="margin-right:5px;vertical-align:-1px"><path d="M8 1a.5.5 0 0 1 .5.5v9.793l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 0 1 .708-.708L7.5 11.293V1.5A.5.5 0 0 1 8 1zM1 14.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/></svg>
+        Importer un catalogue (.CSV)
+      </button>
+      <button class="btn danger-full" onclick="clearCatalogue()">
+        <svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor" style="margin-right:5px;vertical-align:-1px"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg>
+        Vider le catalogue
+      </button>
+    </div>
+
+    <div id="import-feedback"></div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-mention">Cet outil a été créé par l'entreprise</div>
+  <div class="footer-brand">
+    <svg class="ks-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="100" rx="18" fill="#C4391A"/>
+      <text x="51" y="77" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="66" fill="#F0EAD0">K</text>
+    </svg>
+    <span class="footer-brand-name">KraftSystems</span>
+  </div>
+  <div class="footer-email"><a href="mailto:hello@craftedbycyril" style="color:inherit;text-decoration:none;">hello@craftedbycyril</a></div>
+</footer>
+
+<!-- Modal confirmation zone terminée -->
+<div class="modal-overlay" id="zone-done-modal">
+  <div class="modal-box">
+    <div class="modal-icon">✓</div>
+    <div class="modal-title">Tout a été compté dans<br><span class="modal-zone-name" id="modal-zone-name"></span> ?</div>
+    <div class="modal-body">Une fois confirmé, la zone apparaîtra en vert dans la liste. Tu pourras toujours la resélectionner si besoin.</div>
+    <div class="modal-actions">
+      <button class="modal-btn" onclick="closeZoneDoneModal()">Pas encore</button>
+      <button class="modal-btn confirm" onclick="confirmZoneDone()">Oui, c'est fait</button>
+    </div>
+  </div>
+</div>
+<script>
+/* ════════════════════════════════════
+   DONNÉES INITIALES
+════════════════════════════════════ */
+
+let zoneLabels = {
+  economat:    'Économat',
+  bar_aqua:    'Bar Aqua',
+  bar_bateau:  'Bar Bateau',
+  mezza:       'Mezza',
+  tiki:        'Tiki',
+  patio:       'Patio',
+  allee:       'Allée',
+  salle_prepa: 'Salle prépa',
+  boutique:    'Boutique'
+};
+
+const INITIAL_PRODUCTS = [{"article":"PLANTEUR 1L","categorie":"PRODUIT MAISON","qty_total":8.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":8.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"RHUM GINGEMBRE 1L","categorie":"PRODUIT MAISON","qty_total":8.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":8.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"SECOUSSE 1L","categorie":"PRODUIT MAISON","qty_total":2.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":2.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"SOUVENIR 1L","categorie":"PRODUIT MAISON","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"PUNCH EL COCO 1L","categorie":"PRODUIT MAISON","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"BOURBON ICED-TEA 1L","categorie":"PRODUIT MAISON","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"SECOUSSE SANS ALCOOL 1L","categorie":"PRODUIT MAISON","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"BISSAP 1L","categorie":"PRODUIT MAISON","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"ANGOSTURA BITTER ORANGE 10CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"ANGOSTURA BITTER 20CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":2.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":2.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"ARMAGNAC LABALLE RESISTANCE BACO 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"AVEZE 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"COGNAC HENNESSY VERY SPECIAL 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"COGNAC HENNESSY XO 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"COGNAC GAUTIER 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"CREME DE CASSIS MARIE BRIZARD 1L","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"CREME DE MURE MARIE BRIZARD 1L","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"CREME DE PECHE MARIE BRIZARD 1L","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"EAU DE VIE DE POIRE MICLO 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR AMARETTO SINFONIA PERLINO 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR AMARETTO DORAGROSSA  70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":1.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":1.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR APEROL 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR CAMPARI 1L","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.3,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0.3,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR CARTRON CACAO 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR CARTRON CAFÉ BTL 70L","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR COINTREAU 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":4.1,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":4.1,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR DISARONNO 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR GRAND MARNIER CORDON ROUGE 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR KAHLUA 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR LE MERVEILLEUX FALERNUM 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR LIMONCELLO ANTIQUA DISTILLERIA GUAGLIA 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR LUXARDO MARASCHINO ORIGINAL 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR MALIBU COCO 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR MARASCHINO BOLS 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR THE BITTER TRUTH GOLDEN FALERNUM 50CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR THE BITTER TRUTH VIOLET  50CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LIQUEUR TRIPLE SEC MARIE BRIZARD 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"NOILLY PRAT 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"PAMPELLE 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"PASTIS CASANIS 1L","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"PASTIS DES CREISSAUDS 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"PASTIS LA DENISETTE 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"PISCO CUATRO GALLOS PURO QUEBRANTA 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"PORTO MENERES LBV 75CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"PORTO MENERES RESERVE RUBY 75CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"PORTO TAWNY PORT 75CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"PORTO TAWNY 75CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"SALERS GENTIANE 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"ST RAPHAEL AMBRE 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"ST RAPHAEL ROUGE 70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"STRATO DI PISTACCHIO  70CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"SUZE 1L","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"VERMOUTH DEL PROFESSORE BIANCO 75CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"VERMOUTH DEL PROFESSORE ROSSO 75CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.3,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0.3,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"VERMOUTH DOLIN BLANC 75CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"VERMOUTH DOLIN DRY 75CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"VERMOUTH DOLIN ROUGE 75CL","categorie":"APERITIFS LIQUEURS VERMOUTHS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"MEZCAL BANHEZ 100CL","categorie":"AUTRES SPIRITUEUX","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"BRASSERIE DE L ETRE COQUATRICE 33CL","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"BRASSERIE DE L ETRE CRUELLE 33CL","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"BRASSERIE DE L ETRE FEOND 33CL","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"BRASSERIE DE L ETRE SPHINX 33CL","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"CIDRE APPIE EXTRA BRUT BIO 33CL","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"FUT BLANCHE DE BRUXELLES 30L","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"FUT LICORNE DE NOEL 30L","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"FUT LICORNE NEIPA 30L","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"FUT LICORNE 30L","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"FUT SLASH IPA 30L","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"FUT SLASH MANGO 30L","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"CIDRE MAGNERS ORIGINAL 33CL","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LA PARISIENNE BLONDE PALE ALE BIO 33CL","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LA PARISIENNE BRUNE BIO 33CL","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LA PARISIENNE IPA BIO 33CL","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LA PARISIENNE PILS PARISIENNE LIBEREE BIO 33CL","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LE PERE JULES CIDRE BRUT 100CL","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LE PERE JULES CIDRE DOUX 100CL","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"LE PERE JULES CIDRE 33CL","categorie":"BIERES CIDRES","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"CACHACA MAGNIFICA CRISTAL 100 CL","categorie":"CACHACAS","qty_total":3.2,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":3.2,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"CACHACA MAGNIFICA RESERVA SOLEIRA 70CL","categorie":"CACHACAS","qty_total":0.8,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0.8,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"CACHACA MAGNIFICA TRADITIONAL 70CL","categorie":"CACHACAS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"BADOIT ROUGE 100CL PET","categorie":"EAUX","qty_total":9.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":9.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"BADOIT ROUGE 33CL","categorie":"EAUX","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"BADOIT 100CL VC","categorie":"EAUX","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"EVIAN 100CL VC","categorie":"EAUX","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"PERRIER 1L PET","categorie":"EAUX","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"PERRIER 33CL VC","categorie":"EAUX","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"VITTEL 25CL VC","categorie":"EAUX","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"GIN HTK 70CL","categorie":"GINS","qty_total":4.95,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":4.95,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"GIN BEEFEATER 70CL","categorie":"GINS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"GIN BULLDOG LONDON DRY 70CL","categorie":"GINS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"GIN CREMORNE COLONEL FOX 70CL","categorie":"GINS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"GIN DE PROVENCE JUILLET 70CL","categorie":"GINS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"GIN FINSBURY 70CL","categorie":"GINS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"GIN GENEROUS 70CL","categorie":"GINS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"GIN LA REPUBLICA ANDINA 70CL","categorie":"GINS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"GIN NUAGE 70CL","categorie":"GINS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"GIN RETHA OCEANIC 70CL","categorie":"GINS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"GIN ROKU 70CL","categorie":"GINS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"JUS CARAIBOS ANANAS 1L","categorie":"JUS DE FRUIT","qty_total":1.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":1.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"JUS CARAIBOS MANGUE 1L","categorie":"JUS DE FRUIT","qty_total":1.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":1.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"TEQUILA 1800 REPOSADO 70CL","categorie":"TEQUILAS","qty_total":4.05,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":4.05,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"TEQUILA 1800 SILVER 70CL","categorie":"TEQUILAS","qty_total":4.1,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":4.1,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"TEQUILA 1800 ANEJO 70CL","categorie":"TEQUILAS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"TEQUILA 1800 CRISTALINO 70CL","categorie":"TEQUILAS","qty_total":0.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"RHUM SAINT JAMES FLEUR DE CANNE 70CL","categorie":"RHUMS","qty_total":8.1,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":8.1,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"RHUM TROIS RIVIERES AMBRE AGRICOLE 70CL","categorie":"RHUMS","qty_total":4.2,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":4.2,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"RHUM APPLETON SIGNATURE 70CL","categorie":"RHUMS","qty_total":4.1,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":4.1,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"RHUM SANTIAGO DE CUBA 8 ANS 70CL","categorie":"RHUMS","qty_total":4.7,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":4.7,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"SIROP JM SUCRE DE CANNE 70CL","categorie":"SIROPS","qty_total":2.4,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":2.4,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"SIROP MONIN ORGEAT 1L","categorie":"SIROPS","qty_total":2.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":2.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"SIROP TEISSEIRE VANILLE 70CL","categorie":"SIROPS","qty_total":2.5,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":2.5,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"GINGER BEER BUNDABERG 37,5CL","categorie":"SODAS","qty_total":44.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":44.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"FENTIMANS YUZU TONIC 20CL","categorie":"SODAS","qty_total":32.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":32.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"COCA COLA 125CL PET","categorie":"SODAS","qty_total":2.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":2.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"VODKA ZOLADKOWA DE LUXE 70CL","categorie":"VODKAS","qty_total":3.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":3.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"WHISKY BUFFALO TRACE 70CL","categorie":"WHISKIES","qty_total":1.0,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":1.0,"patio":0,"allee":0,"salle_prepa":0,"boutique":0},{"article":"ROUGE AOC CAIRANNE CREATION GROSSET 75CL","categorie":"VINS ROUGES","qty_total":9.8,"economat":0,"bar_aqua":0,"bar_bateau":0,"mezza":0,"tiki":9.8,"patio":0,"allee":0,"salle_prepa":0,"boutique":0}];
+
+let inventory = JSON.parse(JSON.stringify(INITIAL_PRODUCTS));
+let sessionLog = [];
+let activeZone = null;
+let recognition = null;
+let isListening = false;
+let zoneTimeout = null;
+let timeoutInterval = null;
+const ZONE_TIMEOUT_MS = 60000;
+
+/* ════════════════════════════════════
+   ONGLETS
+════════════════════════════════════ */
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+  if (name === 'zones') renderZonesList();
+  if (name === 'catalogue') { renderCatalogue(); renderCatSelect(); }
+}
+
+/* ════════════════════════════════════
+   ZONES DYNAMIQUES
+════════════════════════════════════ */
+function zoneKeys() { return Object.keys(zoneLabels); }
+
+function renderZonePills() {
+  const c = document.getElementById('zone-pills');
+  c.innerHTML = zoneKeys().map(k => {
+    const isActive = activeZone === k;
+    const isDone   = completedZones.has(k);
+    const cls = ['pill', isActive ? 'active' : '', isDone ? 'done' : ''].filter(Boolean).join(' ');
+    return `<div class="${cls}" data-zone="${k}" onclick="setZone('${k}')">${zoneLabels[k]}</div>`;
+  }).join('');
+}
+
+function renderZonesList() {
+  const keys = zoneKeys();
+  const el = document.getElementById('zones-list');
+  if (!keys.length) { el.innerHTML = '<div class="config-empty">Aucune zone configurée</div>'; return; }
+  el.innerHTML = keys.map(k => `
+    <div class="config-row">
+      <div class="config-row-main">
+        <div class="config-row-name">${zoneLabels[k]}</div>
+      </div>
+      <span class="config-row-key">${k}</span>
+      <button class="del-btn" onclick="deleteZone('${k}')" title="Supprimer">×</button>
+    </div>`).join('');
+}
+
+function addZone() {
+  const input = document.getElementById('new-zone-name');
+  const name = input.value.trim();
+  if (!name) { alert('Saisis un nom de zone.'); return; }
+  const key = name.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
+  if (zoneLabels[key]) { alert(`Une zone "${zoneLabels[key]}" existe déjà.`); return; }
+  zoneLabels[key] = name;
+  inventory.forEach(p => p[key] = 0);
+  input.value = '';
+  renderZonesList();
+  renderZonePills();
+  updateSubtitle();
+  saveSession();
+}
+
+function deleteZone(key) {
+  if (!confirm(`Supprimer la zone "${zoneLabels[key]}" ? Les quantités associées seront perdues.`)) return;
+  if (activeZone === key) { activeZone = null; stopMic(); }
+  delete zoneLabels[key];
+  inventory.forEach(p => { delete p[key]; p.qty_total = zoneKeys().reduce((s,k) => s + (p[k]||0), 0); });
+  sessionLog = sessionLog.filter(e => e.zone !== key);
+  renderZonesList();
+  renderZonePills();
+  renderLog();
+  updateSubtitle();
+  saveSession();
+}
+
+/* ════════════════════════════════════
+   CATALOGUE PRODUITS
+════════════════════════════════════ */
+function allCategories() {
+  return [...new Set(inventory.map(p => p.categorie))].sort();
+}
+
+function renderCatSelect() {
+  const sel = document.getElementById('new-product-cat');
+  const cats = allCategories();
+  sel.innerHTML = cats.map(c => `<option value="${c}">${c}</option>`).join('');
+}
+
+function renderCatalogue() {
+  const q = (document.getElementById('catalogue-search')?.value || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const filtered = inventory.filter(p => {
+    if (!q) return true;
+    const hay = (p.article + ' ' + p.categorie).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+    return hay.includes(q);
+  });
+  const el = document.getElementById('catalogue-list');
+  const badge = document.getElementById('catalogue-count');
+  badge.textContent = `${filtered.length} référence${filtered.length > 1 ? 's' : ''}${q ? ' trouvée' + (filtered.length > 1 ? 's' : '') : ''}`;
+  if (!filtered.length) { el.innerHTML = '<div class="config-empty">Aucun produit trouvé</div>'; return; }
+  el.innerHTML = filtered.map((p, _) => {
+    const idx = inventory.indexOf(p);
+    return `<div class="config-row">
+      <div class="config-row-main">
+        <div class="config-row-name">${p.article}</div>
+        <div class="config-row-meta">${p.categorie}</div>
+      </div>
+      <button class="del-btn" onclick="deleteProduct(${idx})" title="Supprimer">×</button>
+    </div>`;
+  }).join('');
+}
+
+function addProduct() {
+  const nameEl = document.getElementById('new-product-name');
+  const catEl = document.getElementById('new-product-cat');
+  const name = nameEl.value.trim().toUpperCase();
+  const cat = catEl.value;
+  if (!name) { alert('Saisis un nom de produit.'); return; }
+  if (inventory.some(p => p.article === name)) { alert('Ce produit existe déjà dans le catalogue.'); return; }
+  const newProduct = { article: name, categorie: cat, qty_total: 0 };
+  zoneKeys().forEach(k => newProduct[k] = 0);
+  inventory.push(newProduct);
+  nameEl.value = '';
+  renderCatalogue();
+  updateSubtitle();
+  saveSession();
+}
+
+function deleteProduct(idx) {
+  const p = inventory[idx];
+  if (!confirm(`Supprimer "${p.article}" du catalogue ?`)) return;
+  sessionLog = sessionLog.filter(e => e.article !== p.article);
+  inventory.splice(idx, 1);
+  renderCatalogue();
+  renderLog();
+  updateSubtitle();
+  saveSession();
+}
+
+function clearCatalogue() {
+  if (!inventory.length) { showImportFeedback('Le catalogue est déjà vide.', 'warn'); return; }
+  if (!confirm(`Vider le catalogue entier (${inventory.length} référence${inventory.length > 1 ? 's' : ''}) ? Cette action est irréversible.`)) return;
+  sessionLog = [];
+  inventory = [];
+  renderCatalogue();
+  renderLog();
+  renderCatSelect();
+  updateSubtitle();
+  saveSession();
+  showImportFeedback('Catalogue vidé.', 'warn');
+}
+
+function importCSV(event) {
+  const file = event.target.files[0];
+  event.target.value = '';
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      // Détection d'encodage : BOM UTF-8 → UTF-8, sinon Latin-1 (fichiers Excel/FR)
+      const raw = new Uint8Array(e.target.result);
+      const isUtf8Bom = raw[0]===0xEF && raw[1]===0xBB && raw[2]===0xBF;
+      const encoding = isUtf8Bom ? 'UTF-8' : 'ISO-8859-1';
+      const text = new TextDecoder(encoding).decode(raw);
+      const lines = text.split(/\r?\n/).filter(l => l.trim());
+      if (lines.length < 2) { showImportFeedback('Le fichier CSV semble vide ou mal formaté.', 'error'); return; }
+
+      // Détection du séparateur (, ou ;)
+      const sep = lines[0].includes(';') ? ';' : ',';
+
+      const parseRow = (line) => {
+        const cols = [];
+        let cur = '', inQ = false;
+        for (const ch of line) {
+          if (ch === '"') { inQ = !inQ; }
+          else if (ch === sep && !inQ) { cols.push(cur.trim()); cur = ''; }
+          else { cur += ch; }
+        }
+        cols.push(cur.trim());
+        return cols;
+      };
+
+      const headers = parseRow(lines[0]).map(h => h.replace(/^"|"$/g,'').trim().toLowerCase()
+        .normalize('NFD').replace(/[̀-ͯ]/g,''));
+
+      const colIdx = (names) => {
+        for (const n of names) { const i = headers.indexOf(n); if (i >= 0) return i; }
+        return -1;
+      };
+
+      const artIdx  = colIdx(['article','nom produit','nom_produit','nom','name','produit','product','libelle']);
+      const catIdx  = colIdx(['categorie','category','cat','famille','famille_produit']);
+      const numIdx  = colIdx(['numero','number','ref','reference','code','ean','id']);
+      const uniteIdx= colIdx(['unite','unité','unit','uom','conditionnement']);
+      const fournIdx= colIdx(['fournisseur','supplier','vendor','fourn']);
+
+      if (artIdx === -1) {
+        showImportFeedback('Colonne "ARTICLE" introuvable. Colonnes détectées : ' + headers.join(', '), 'error');
+        return;
+      }
+
+      const clean = (row, idx) => idx >= 0 ? (row[idx] || '').replace(/^"|"$/g,'').trim() : '';
+
+      let added = 0, skipped = 0;
+      for (let i = 1; i < lines.length; i++) {
+        const row = parseRow(lines[i]);
+        const name = clean(row, artIdx).toUpperCase();
+        if (!name) continue;
+        const cat = clean(row, catIdx) || 'IMPORTÉ';
+        if (inventory.some(p => p.article === name)) { skipped++; continue; }
+        const newProduct = {
+          article: name, categorie: cat, qty_total: 0,
+          numero:      clean(row, numIdx),
+          unite:       clean(row, uniteIdx),
+          fournisseur: clean(row, fournIdx)
+        };
+        zoneKeys().forEach(k => newProduct[k] = 0);
+        inventory.push(newProduct);
+        added++;
+      }
+
+      renderCatalogue();
+      renderCatSelect();
+      updateSubtitle();
+      saveSession();
+      const msg = `Import terminé : <strong>${added}</strong> produit${added > 1 ? 's' : ''} ajouté${added > 1 ? 's' : ''}` +
+        (skipped ? `, ${skipped} ignoré${skipped > 1 ? 's' : ''} (déjà présent${skipped > 1 ? 's' : ''})` : '') + '.';
+      showImportFeedback(msg, added > 0 ? 'success' : 'warn');
+
+    } catch(err) {
+      showImportFeedback('Erreur lors de la lecture du fichier : ' + err.message, 'error');
+    }
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function showImportFeedback(msg, type = 'info') {
+  const el = document.getElementById('import-feedback');
+  el.innerHTML = `<div class="feedback ${type}" style="margin-top:.75rem">${msg}</div>`;
+  setTimeout(() => el.innerHTML = '', 6000);
+}
+
+function updateSubtitle() {
+  document.getElementById('subtitle-refs').textContent = `${inventory.length} référence${inventory.length > 1 ? 's' : ''}`;
+  document.getElementById('subtitle-zones').textContent = `${zoneKeys().length} zone${zoneKeys().length > 1 ? 's' : ''}`;
+}
+
+/* ════════════════════════════════════
+   RECONNAISSANCE VOCALE
+════════════════════════════════════ */
+function normalize(str) {
+  return str.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+}
+
+function findProduct(text) {
+  const norm = normalize(text);
+  let best = null, bestScore = 0;
+  for (const p of inventory) {
+    const pn = normalize(p.article);
+    let score = 0;
+    for (const w of norm.split(' ')) {
+      if (w.length < 3) continue;
+      if (pn.includes(w)) score += w.length;
+    }
+    if (score > bestScore) { bestScore = score; best = p; }
+  }
+  return bestScore > 3 ? best : null;
+}
+
+function extractNumber(text) {
+  const m = text.match(/(\d+[,.]?\d*)/);
+  return m ? parseFloat(m[1].replace(',', '.')) : null;
+}
+
+function setZone(zone) {
+  activeZone = zone;
+  renderZonePills();
+  updateDoneBtn();
+  document.getElementById('mic-status').textContent = `Zone : ${zoneLabels[zone]} — Clique pour dicter`;
+  resetZoneTimeout();
+  showFeedback(`Zone sélectionnée : ${zoneLabels[zone]}`, 'info');
+}
+
+function resetZoneTimeout() {
+  if (zoneTimeout) clearTimeout(zoneTimeout);
+  if (timeoutInterval) clearInterval(timeoutInterval);
+  const fill = document.getElementById('timeout-fill');
+  fill.style.width = '100%';
+  const start = Date.now();
+  timeoutInterval = setInterval(() => {
+    const pct = Math.max(0, 100 - ((Date.now() - start) / ZONE_TIMEOUT_MS) * 100);
+    fill.style.width = pct + '%';
+  }, 500);
+  zoneTimeout = setTimeout(() => {
+    clearInterval(timeoutInterval);
+    fill.style.width = '0%';
+    activeZone = null;
+    renderZonePills();
+    document.getElementById('mic-status').textContent = 'Zone expirée — Sélectionne une nouvelle zone';
+    showFeedback('Zone réinitialisée après 1 minute d\'inactivité.', 'warn');
+  }, ZONE_TIMEOUT_MS);
+}
+
+function processVoice(text) {
+  document.getElementById('transcript').textContent = `"${text}"`;
+  if (!activeZone) { showFeedback('Sélectionne d\'abord une zone.', 'warn'); return; }
+
+  const qty = extractNumber(text);
+  if (qty === null) { showFeedback(`Quantité non reconnue dans : "${text}"`, 'error'); return; }
+
+  const product = findProduct(text);
+  if (!product) {
+    showFeedback(
+      `Produit non reconnu : "<strong>${text}</strong>"<br>` +
+      `<small>Vérifie l'orthographe ou ajoute ce produit dans l'onglet <em>Catalogue produits</em>.</small>`,
+      'error'
+    );
+    return;
+  }
+
+  const oldZoneQty = product[activeZone] || 0;
+  const oldTotal = product.qty_total;
+  product[activeZone] = Math.round((oldZoneQty + qty) * 1000) / 1000;
+  product.qty_total = Math.round((oldTotal + qty) * 1000) / 1000;
+
+  const entry = { article: product.article, zone: activeZone, qty, timestamp: Date.now(), productRef: product, oldZoneQty, oldTotal };
+  sessionLog.unshift(entry);
+  renderLog();
+  saveSession();
+  resetZoneTimeout();
+  showFeedback(`✓ ${product.article} · +${qty} en ${zoneLabels[activeZone]} → ${product[activeZone]} (total : ${product.qty_total})`, 'success');
+}
+
+function toggleMic() {
+  if (!activeZone) { showFeedback('Sélectionne d\'abord une zone.', 'warn'); return; }
+  isListening ? stopMic() : startMic();
+}
+
+function startMic() {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { showFeedback('Reconnaissance vocale non supportée sur ce navigateur.', 'error'); return; }
+
+  isListening = true;
+  updateMicUI('listening');
+  document.getElementById('mic-status').textContent = 'Écoute en continu — cliquer pour arrêter';
+
+  function startCycle() {
+    if (!isListening) return;
+
+    recognition = new SR();
+    recognition.lang = 'fr-FR';
+    recognition.continuous = false;
+    recognition.interimResults = true;
+
+    recognition.onresult = (e) => {
+      const last = e.results[e.results.length - 1];
+      const t = last[0].transcript;
+      document.getElementById('transcript').textContent = t;
+      if (last.isFinal) {
+        document.getElementById('transcript').textContent = '';
+        processVoice(t);
+      }
+    };
+
+    recognition.onerror = (e) => {
+      if (e.error === 'no-speech' || e.error === 'aborted') return;
+      stopMic();
+      showFeedback(`Erreur micro : ${e.error}`, 'error');
+    };
+
+    // Redémarre automatiquement après chaque phrase
+    recognition.onend = () => {
+      if (isListening) setTimeout(startCycle, 120);
+    };
+
+    try { recognition.start(); } catch(e) {}
+  }
+
+  startCycle();
+}
+
+function stopMic() {
+  isListening = false;
+  if (recognition) { try { recognition.abort(); } catch(e){} recognition = null; }
+  updateMicUI('idle');
+  document.getElementById('mic-status').textContent = activeZone
+    ? `Zone : ${zoneLabels[activeZone]} — Clique pour dicter`
+    : 'Sélectionne une zone puis clique pour dicter';
+}
+
+function updateMicUI(state) {
+  document.getElementById('mic-btn').className = 'mic-btn' + (state === 'listening' ? ' listening' : state === 'processing' ? ' processing' : '');
+}
+
+function showFeedback(msg, type = 'info') {
+  const el = document.getElementById('feedback-box');
+  el.innerHTML = `<div class="feedback ${type}">${msg}</div>`;
+  setTimeout(() => el.innerHTML = '', 5000);
+}
+
+/* ════════════════════════════════════
+   LOG & EXPORT
+════════════════════════════════════ */
+function renderLog() {
+  const body = document.getElementById('log-body');
+  const count = document.getElementById('log-count');
+  count.textContent = `${sessionLog.length} entrée${sessionLog.length > 1 ? 's' : ''}`;
+  if (!sessionLog.length) { body.innerHTML = '<div class="empty-log">Aucune saisie pour le moment</div>'; return; }
+  body.innerHTML = sessionLog.slice(0, 30).map((e, i) => `
+    <div class="log-row">
+      <span class="art" title="${e.article}">${e.article}</span>
+      <span class="zone">${zoneLabels[e.zone] || e.zone}</span>
+      <span class="qty">+${e.qty}</span>
+      <button class="undo-btn" onclick="undoEntry(${i})">annuler</button>
+    </div>`).join('');
+}
+
+function undoEntry(i) {
+  const e = sessionLog[i];
+  e.productRef[e.zone] = e.oldZoneQty;
+  e.productRef.qty_total = e.oldTotal;
+  sessionLog.splice(i, 1);
+  renderLog();
+  saveSession();
+  showFeedback(`Annulé : ${e.article}`, 'warn');
+}
+
+function clearLog() { sessionLog = []; renderLog(); saveSession(); showFeedback('Session effacée.', 'warn'); }
+
+function exportCSV() {
+  const changed = inventory.filter(p => sessionLog.some(e => e.article === p.article));
+  if (!changed.length) { showFeedback('Aucune modification à exporter.', 'warn'); return; }
+
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2,'0');
+  const mm = String(today.getMonth()+1).padStart(2,'0');
+  const yyyy = today.getFullYear();
+  const dateStr = `${dd}-${mm}-${yyyy}`;
+
+  const fmtQty = n => String(n).replace('.', ',');
+
+  const header = 'Catégorie;Zone stockage;Nom produit;Numero;Quantite;Unité;Fournisseur';
+  const rows = [];
+
+  for (const p of changed) {
+    const zonesWithQty = zoneKeys().filter(k => (p[k] || 0) > 0);
+    if (zonesWithQty.length === 0) {
+      rows.push([p.categorie, '', p.article, p.numero||'', fmtQty(p.qty_total), p.unite||'', p.fournisseur||''].join(';'));
+    } else {
+      for (const k of zonesWithQty) {
+        rows.push([p.categorie, zoneLabels[k]||k, p.article, p.numero||'', fmtQty(p[k]), p.unite||'', p.fournisseur||''].join(';'));
+      }
+    }
+  }
+
+  const csv = '﻿' + [header, ...rows].join('\n');
+  const url = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8;'}));
+  const a = document.createElement('a'); a.href = url; a.download = `inventaire_${dateStr}.csv`; a.click();
+  URL.revokeObjectURL(url);
+  showFeedback(`CSV exporté — ${changed.length} produit(s) · ${rows.length} ligne(s).`, 'success');
+}
+
+function showSummary() {
+  const changed = inventory.filter(p => sessionLog.some(e => e.article === p.article));
+  if (!changed.length) { showFeedback('Aucune modification dans cette session.', 'warn'); return; }
+  alert(JSON.stringify(changed.map(p => ({ article: p.article, qty_total: p.qty_total, zones: Object.fromEntries(zoneKeys().map(k => [k, p[k]])) })), null, 2));
+}
+
+/* ════════════════════════════════════
+   ZONES TERMINÉES
+════════════════════════════════════ */
+let completedZones = new Set();
+
+function updateDoneBtn() {
+  const btn = document.getElementById('done-btn');
+  if (!activeZone) { btn.classList.remove('visible', 'completed'); return; }
+  btn.classList.add('visible');
+  if (completedZones.has(activeZone)) {
+    btn.classList.add('completed');
+    btn.innerHTML = `<svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg> Déjà marquée terminée`;
+  } else {
+    btn.classList.remove('completed');
+    btn.innerHTML = `<svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg> Zone terminée`;
+  }
+}
+
+function askZoneDone() {
+  if (!activeZone) return;
+  if (completedZones.has(activeZone)) {
+    if (!confirm(`Retirer le marquage "terminé" de ${zoneLabels[activeZone]} ?`)) return;
+    completedZones.delete(activeZone);
+    renderZonePills();
+    updateDoneBtn();
+    checkSessionComplete();
+    saveSession();
+    return;
+  }
+  document.getElementById('modal-zone-name').textContent = zoneLabels[activeZone];
+  document.getElementById('zone-done-modal').classList.add('open');
+}
+
+function closeZoneDoneModal() {
+  document.getElementById('zone-done-modal').classList.remove('open');
+}
+
+function confirmZoneDone() {
+  closeZoneDoneModal();
+  if (!activeZone) return;
+  completedZones.add(activeZone);
+  renderZonePills();
+  updateDoneBtn();
+  checkSessionComplete();
+  saveSession();
+}
+
+function checkSessionComplete() {
+  const keys = zoneKeys();
+  const banner = document.getElementById('session-complete-banner');
+  const allDone = keys.length > 0 && keys.every(k => completedZones.has(k));
+  banner.classList.toggle('visible', allDone);
+  if (allDone) {
+    const total = sessionLog.length;
+    document.getElementById('banner-sub').textContent =
+      `Toutes les ${keys.length} zones ont été vérifiées — ${total} saisie${total > 1 ? 's' : ''} enregistrée${total > 1 ? 's' : ''} cette session.`;
+  }
+}
+
+// Ferme la modal si clic sur l'overlay
+document.getElementById('zone-done-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeZoneDoneModal();
+});
+
+/* ════════════════════════════════════
+   PERSISTANCE LOCALE (localStorage)
+════════════════════════════════════ */
+const STORAGE_KEY = 'cg_inventaire_v1';
+
+function saveSession() {
+  try {
+    const logToSave = sessionLog.map(e => ({
+      article:    e.article,
+      zone:       e.zone,
+      qty:        e.qty,
+      timestamp:  e.timestamp,
+      oldZoneQty: e.oldZoneQty,
+      oldTotal:   e.oldTotal
+    }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ sessionLog: logToSave, inventory, zoneLabels, completedZones: [...completedZones] }));
+    flashSave();
+  } catch(e) { /* localStorage indisponible */ }
+}
+
+function loadSession() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const data = JSON.parse(raw);
+    if (data.zoneLabels)     zoneLabels     = data.zoneLabels;
+    if (data.inventory)      inventory      = data.inventory;
+    if (data.completedZones) completedZones = new Set(data.completedZones);
+    if (data.sessionLog) {
+      sessionLog = data.sessionLog.map(e => ({
+        ...e,
+        productRef: inventory.find(p => p.article === e.article) || null
+      })).filter(e => e.productRef);
+    }
+    return true;
+  } catch(e) { return false; }
+}
+
+function flashSave() {
+  const el = document.getElementById('save-indicator');
+  if (!el) return;
+  el.classList.add('saved');
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('saved'), 1800);
+}
+
+/* ════════════════════════════════════
+   INIT
+════════════════════════════════════ */
+const restored = loadSession();
+renderZonePills();
+renderLog();
+updateSubtitle();
+checkSessionComplete();
+if (restored) {
+  showFeedback(
+    `Session restaurée — ${sessionLog.length} saisie${sessionLog.length > 1 ? 's' : ''} récupérée${sessionLog.length > 1 ? 's' : ''}.`,
+    'info'
+  );
+}
+</script>
+</body>
+</html>
